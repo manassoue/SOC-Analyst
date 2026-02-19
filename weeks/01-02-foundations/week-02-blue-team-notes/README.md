@@ -1,34 +1,46 @@
-# Week 02 — Blue Team Foundations (SOC workflow + defender frameworks)
+# Week 02 — Network Security Foundations (Scanning, Protocols, Segmentation, Zero Trust)
 
 ## Objective
-Understand the day-to-day workflow of a SOC analyst and the core defender frameworks used to prevent, detect, investigate, and respond to threats. This week prepares the mindset and methodology that will be applied to the lab in upcoming weeks.
+Build a defender’s understanding of how attackers discover targets (automated scanning), why common protocols/ports create risk, and how network controls (segmentation, encryption, Zero Trust) reduce breach impact.
 
-## What I covered
-### 1) Blue Team vs Red Team (practical view)
-- Red Team: simulate attacks to test controls and exposure.
-- Blue Team: continuous operations — monitoring, detection, triage, investigation, response, and improvement.
-- Key takeaway: defenders optimize for **visibility + resilience + repeatable processes**.
+## Topics covered (defender view)
 
-### 2) What SOC analysts do daily
-- Monitor alerts (SIEM/EDR/IDS), validate signals, reduce noise.
-- Triage: quickly decide false positive vs suspicious vs incident.
-- Investigate with host + network logs (timeline building).
-- Escalate and document: clear notes, evidence, and recommended actions.
-- Improve detections and hardening (continuous improvement loop).
+### 1) Automated scanning is constant
+- Reality: bots continuously scan public IP ranges for exposed services.
+- Defender takeaway: exposure management matters (firewall policy, segmentation, patching, and continuous monitoring).
 
-### 3) CIA Triad + Defense-in-Depth
-- Confidentiality / Integrity / Availability as a decision framework.
-- Defense-in-depth: multiple layers (prevent, detect, respond, recover).
-- Mapping: each control should have an associated detection and an IR action when it fails.
+### 2) Why protocols matter for security
+- Most incidents exploit weaknesses in common protocols (misconfigurations, outdated versions, weak authentication).
+- Defender takeaway: understand “normal” protocol behavior to spot anomalies in logs/traffic.
 
-### 4) Cyber Kill Chain (defender perspective)
-- Goal: break the chain early (prevent) and detect later stages if prevention fails.
-- Defender mindset: “What evidence would exist at each stage?” and “Which telemetry do I need?”
+### 3) TCP/IP and protocol risk
+- Protocols were not always designed with modern threat models in mind.
+- Defender takeaway: reduce legacy protocol exposure + monitor what you cannot remove.
 
-## Deliverables (portfolio artifacts)
-- `notes.md`: summary of concepts + definitions used in later weeks
-- `runbooks/`: first triage checklist (basic)
-- `docs/architecture.md`: how the lab supports visibility and detection goals
+### 4) Ports as entry points
+- Ports map to services; exposed services = attack surface.
+- Defender takeaway: minimize exposed ports, enforce least-privilege connectivity, and alert on scanning patterns.
+
+### 5) Case study: WannaCry (SMB)
+- WannaCry highlighted how a vulnerable service (SMB) can enable rapid propagation.
+- Defender takeaway: patch management + segmentation + monitoring lateral movement signals.
+
+### 6) Network segmentation
+- Segmentation limits blast radius and lateral movement.
+- Defender takeaway: separate management, user endpoints, and monitoring infrastructure (aligns with my lab design).
+
+### 7) Encryption basics (TLS/HTTPS, VPN)
+- Encryption protects confidentiality and helps prevent MITM when correctly implemented.
+- Defender takeaway: verify TLS hygiene and watch for downgrade/inspection blind spots.
+
+### 8) Zero Trust principles
+- “Never trust, always verify”: identity + device posture + least privilege + continuous evaluation.
+- Defender takeaway: move from perimeter-only thinking to identity-driven controls.
+
+## Portfolio deliverables
+- `notes.md`: protocol/port cheat sheet + security implications
+- `runbook-mini.md`: quick triage checklist for “possible scanning” events
+- (Optional) `evidence/`: segmentation diagram aligned with my lab networks
 
 ## Next steps
-Week 03–04: start generating and observing network telemetry (Suricata/Zeek/Wireshark) and enforce network defenses (pfSense).
+Week 03–04: apply these concepts hands-on using Suricata/Zeek/Wireshark + firewall enforcement (pfSense).
