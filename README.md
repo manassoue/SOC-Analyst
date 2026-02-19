@@ -1,34 +1,32 @@
-# Blue Team Portfolio — 16-week SOC & Defense Roadmap
+# Blue Team Portfolio — 16-Week SOC Lab Roadmap
 
-Objectif : devenir job-ready sur des rôles Blue Team (SOC / Detection / IR) via un lab documenté avec preuves (logs, alertes, dashboards, règles, runbooks).
+Portfolio Blue Team (SOC / Detection / IR) construit sur 16 semaines avec preuves: architecture, logs, alertes, règles, runbooks et rapports d’investigation.
 
-## Roadmap
-- Week 1–2: Foundations (SOC mindset, frameworks, triage)
-- Week 3–4: Network Defense & Monitoring (pfSense, Suricata, Zeek, Wireshark)
-- Week 5–6: Endpoint Hardening & Security (CIS, Sysmon, AD basics)
-- Week 7–8: SIEM & Detection Engineering (ELK, parsing, dashboards, rules)
-- Week 9–10: Threat Intelligence & Hunting (MISP/OTX, OSQuery, hunts)
-- Week 11–12: Incident Response & Forensics (ransomware sim, Volatility, KAPE)
-- Week 13–14: EDR & Advanced Defense (Wazuh, YARA, tuning)
-- Week 15: Cloud Security Operations (AWS IAM, CloudTrail, GuardDuty)
-- Week 16: Purple Team Integration (attack chain validation + improvements)
+## Quick navigation
+### Weeks 1–6: Foundation
+- [Week 01 — SOC Lab Build (VirtualBox + Segmentation)](weeks/01-02-foundations/week-01-lab-build/)
+- [Week 02 — Blue Team Foundations (SOC workflow + frameworks)](weeks/01-02-foundations/week-02-blue-team-notes/)
+- [Week 03 — Network Monitoring (Suricata/Zeek/Wireshark)](weeks/03-04-network-defense/week-03-monitoring/)
+- [Week 04 — Network Defense (pfSense + IPS)](weeks/03-04-network-defense/week-04-network-defense/)
+- [Week 05 — Endpoint Hardening (Windows)](weeks/05-06-endpoint-hardening/week-05-windows-hardening/)
+- [Week 06 — Endpoint Hardening (Linux) + Secured AD (GPO)](weeks/05-06-endpoint-hardening/week-06-linux-hardening-ad/)
 
-## Portfolio navigation (weeks)
-- Foundations: `weeks/01-02-foundations/`
-- Network Defense: `weeks/03-04-network-defense/`
-- Endpoint Hardening: `weeks/05-06-endpoint-hardening/`
-- SIEM & Detection: `weeks/07-08-siem-detection/`
-- Threat Intel & Hunting: `weeks/09-10-threat-intel-hunting/`
-- IR & Forensics: `weeks/11-12-ir-forensics/`
-- EDR & Advanced: `weeks/13-14-edr-advanced/`
-- Cloud SecOps: `weeks/15-cloud-secops/`
-- Purple Team: `weeks/16-purple-team/`
+### Weeks 7–12: Detection & Hunting
+- [Week 07 — ELK SIEM (centralized logging)](weeks/07-08-siem-detection/week-07-elk-siem/)
+- [Week 08 — Detection Engineering (rules + MITRE mapping)](weeks/07-08-siem-detection/week-08-detection-engineering/)
+- [Week 09 — Threat Intelligence (MISP / OTX)](weeks/09-10-threat-intel-hunting/week-09-threat-intel/)
+- [Week 10 — Threat Hunting (OSQuery library)](weeks/09-10-threat-intel-hunting/week-10-threat-hunting/)
+- [Week 11 — Incident Response (ransomware simulation)](weeks/11-12-ir-forensics/week-11-incident-response/)
+- [Week 12 — Digital Forensics (Volatility / KAPE)](weeks/11-12-ir-forensics/week-12-forensics/)
 
-## What recruiters can quickly verify here
-- Evidence-driven work: screenshots, exports, and sanitized configs
-- Detection mindset: rules + mapping to frameworks (MITRE ATT&CK)
-- SOC readiness: triage runbooks, investigation notes, incident writeups
-- Secure documentation practices: no secrets published
+### Weeks 13–16: Advanced Operations
+- [Week 13 — EDR (Wazuh setup)](weeks/13-14-edr-advanced/week-13-wazuh-edr/)
+- [Week 14 — YARA rules + tuning](weeks/13-14-edr-advanced/week-14-yara/)
+- [Week 15 — AWS Security Ops (IAM/CloudTrail/GuardDuty)](weeks/15-cloud-secops/week-15-aws-security/)
+- [Week 16 — Purple Team Capstone (attack chain validation)](weeks/16-purple-team/week-16-capstone/)
 
-## Runbooks
-See `runbooks/` for triage playbooks and checklists.
+## What you’ll find in each week
+- `README.md` : objective → implementation → validation → lessons learned
+- `evidence/` : screenshots, exports, sample logs (sanitized)
+- `config/` : configs (sanitized, no secrets)
+- `runbooks/` : triage/IR playbooks
