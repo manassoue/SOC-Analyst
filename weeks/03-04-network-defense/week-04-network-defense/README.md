@@ -1,54 +1,61 @@
-# Week 04 — Network Defense Architecture (Firewall vs IDS vs IPS vs NGFW)
+# Week 04 — Active Threat Prevention (pfSense + Suricata IPS)
 
-## Objective
-Understand why a single security control (firewall) is not enough, and how enterprise SOCs combine **firewall + IDS + IPS** as layered defenses. This week focuses on detection vs prevention and the trade-offs (visibility, encrypted traffic, tuning, false positives).
+## Goal
+Transform the lab network from detection-only to active prevention by deploying **pfSense** as an enterprise-grade firewall and configuring **Suricata in IPS mode** to block attacks in real time.
 
-## Key concepts (enterprise view)
+## What I built
+- pfSense firewall with segmented **WAN/LAN** interfaces
+- Firewall rules blocking known malicious IPs
+- Geo-blocking to drop traffic from entire countries (pfBlockerNG)
+- Suricata IPS with inline blocking (60,000+ threat signatures)
+- Centralized gateway routing through the firewall
+- A complete network protection layer for all VMs
 
-### 1) Why firewalls alone fail
-- Firewalls primarily enforce **rule-based filtering** (IP/port/protocol).
-- They do not automatically “understand” intent or exploit patterns.
-- Encrypted traffic (TLS) limits content inspection unless decryption is in place.
+## Tools & Technologies
+- pfSense Community Edition
+- Suricata IPS (Inline Mode)
+- pfBlockerNG (Geo-blocking)
+- MaxMind GeoLite2 Database
+- VirtualBox
+- Ubuntu Server / Ubuntu Desktop
+- Windows 10
 
-**Defender takeaway:** a firewall reduces attack surface, but does not replace detection and response.
+## Prerequisites
+- Lab 1 completed: 3 VMs with networking configured
+- Lab 2 completed: Watchtower monitoring deployed
+- Basic understanding of firewalls and network security
+- Resources for pfSense VM: 2GB+ RAM and 20GB storage available
 
-### 2) Stateless vs Stateful firewalls
-- Stateless: decisions per packet (simple, fast, less context).
-- Stateful: tracks sessions (better context, stronger enforcement).
+## Lab Architecture
+### pfSense VM specs
+- RAM: 2GB
+- CPU: 2 cores
+- Disk: 20GB
 
-**Defender takeaway:** stateful rules are essential for realistic enterprise control.
+### Interfaces
+- WAN Interface: NAT (Internet access)
+- LAN Interface: Host-only `192.168.56.0/24`
+- Suricata IPS: inline mode on LAN interface
+- All VMs route through the pfSense gateway
 
-### 3) IDS (Intrusion Detection System)
-- IDS detects suspicious patterns and generates alerts.
-- Typically deployed out-of-band (monitoring only).
+## Learning objectives
+- Understand IDS vs IPS (Detection vs Prevention)
+- Deploy and configure pfSense from scratch
+- Implement geo-blocking with pfBlockerNG
+- Configure Suricata in prevention mode
+- Create intelligent firewall rules
+- Route all VMs through the firewall gateway
+- Test and validate IPS blocking
 
-**Strength:** visibility without breaking traffic  
-**Limit:** does not block attacks by itself
+## Evidence to include (for portfolio)
+Create an `evidence/` folder and add:
+- [ ] Screenshot: pfSense interfaces (WAN/LAN) configured
+- [ ] Screenshot: LAN network showing `192.168.56.0/24`
+- [ ] Screenshot: firewall rules (malicious IP blocking)
+- [ ] Screenshot: pfBlockerNG geo-blocking enabled + MaxMind configured
+- [ ] Screenshot: Suricata IPS inline mode enabled on LAN
+- [ ] Screenshot/log: Suricata alert showing a blocked event
+- [ ] Screenshot: VM routing through pfSense gateway (proof all VMs use the firewall)
 
-### 4) IPS (Intrusion Prevention System)
-- IPS runs **inline** and can block traffic in real time.
-- More powerful, but riskier: false positives can disrupt business traffic.
-
-**Defender takeaway:** IPS requires careful tuning + change control.
-
-### 5) NGFW (Next-Generation Firewall) overview
-- Adds application awareness, deep inspection features, and sometimes sandboxing/integration.
-- Still benefits from complementary IDS/IPS and SOC monitoring.
-
-### 6) Defense-in-Depth architecture
-A practical layered model:
-- **Prevent**: firewall policy, segmentation, least privilege connectivity
-- **Detect**: IDS alerts + network telemetry (Zeek logs)
-- **Block**: IPS (inline) with tuning + exceptions
-- **Respond**: SOC triage + playbooks + evidence collection
-
-## Portfolio deliverables
-- A simple diagram of “Firewall + IDS + IPS” placement (in `evidence/`)
-- A mini runbook: IPS tuning + false positive handling
-- Notes: detection vs prevention decision matrix
-
-## Next steps (lab)
-Next video/lab will implement **pfSense + Suricata IPS** to block suspicious traffic in real time and document:
-- baseline allowed traffic
-- blocked events
-- tuning decisions and false positive management
+## Next step
+Lab 4: Windows Hardening with Group Policy, Sysmon deployment, and advanced security logging.
